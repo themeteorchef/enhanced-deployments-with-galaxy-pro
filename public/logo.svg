@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="540px" height="70px" viewBox="0 0 540 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="Group" transform="translate(-7.000000, -33.000000)">
+                <g id="ui-color-2_favourite-28" transform="translate(45.000000, 33.000000)" fill="#DE4F4F">
+                    <path d="M52.3695652,0 C46.1875602,0 40.4022943,2.75846136 36.5,7.47447273 C32.5977057,2.75846136 26.8124398,0 20.6304348,0 C9.25517804,0 0,9.27745 0,20.6818182 C0,40.3009568 34.0451687,68.4518227 35.495758,69.6403432 C35.7871074,69.8803636 36.1435537,70 36.5,70 C36.8564463,70 37.2128926,69.8803636 37.504242,69.6403432 C38.9548313,68.4518227 73,40.3009568 73,20.6818182 C73,9.27745 63.744822,0 52.3695652,0 Z" id="Shape"></path>
+                </g>
+                <text id="I" font-family="ProximaNova-Bold, Proxima Nova" font-size="104" font-weight="bold" fill="#1F2128">
+                    <tspan x="0" y="103">I</tspan>
+                </text>
+                <text id="METEOR" font-family="ProximaNova-Bold, Proxima Nova" font-size="104" font-weight="bold" fill="#1F2128">
+                    <tspan x="134" y="103">METEOR</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

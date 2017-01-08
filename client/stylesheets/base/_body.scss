@@ -1,0 +1,15 @@
+body {
+  padding-bottom: 20px;
+}
+
+@include breakpoint(tablet) {
+  body {
+    padding-bottom: 40px;
+  }
+}
+
+@include breakpoint(desktop) {
+  body {
+    padding-bottom: 60px;
+  }
+}

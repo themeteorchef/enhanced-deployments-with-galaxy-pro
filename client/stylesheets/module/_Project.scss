@@ -1,0 +1,66 @@
+.Project {
+  display: block;
+  border: 1px solid #eee;
+  border-radius: 3px;
+
+  &:hover {
+    border: 1px solid #ccc;
+  }
+
+  .Project-details {
+    position: relative;
+    padding: 20px;
+  }
+
+  .Project-details:hover {
+    cursor: pointer;
+  }
+
+  a {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  h4 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 5px 0 0 0;
+    color: #888;
+  }
+
+  footer {
+    padding: 15px 20px 15px;
+  }
+
+  footer p {
+    display: inline-block;
+    margin: 0px;
+
+    &:hover {
+      color: #444;
+    }
+  }
+
+  .favorite:hover {
+    cursor: pointer;
+  }
+
+  .favorite.is-favorited {
+    color: #de4f4f;
+  }
+}

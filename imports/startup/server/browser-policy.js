@@ -1,2 +1,4 @@
-// import { BrowserPolicy } from 'meteor/browser-policy-common';
-// e.g., BrowserPolicy.content.allowOriginForAll( 's3.amazonaws.com' );
+import { BrowserPolicy } from 'meteor/browser-policy-common';
+
+BrowserPolicy.content.allowOriginForAll('www.fillmurray.com');
+BrowserPolicy.content.allowOriginForAll('fillmurray.com');

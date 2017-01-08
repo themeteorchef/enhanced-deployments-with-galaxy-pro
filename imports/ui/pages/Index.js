@@ -1,15 +1,36 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
+import TextHeader from '../components/TextHeader';
+import ProjectGallery from '../containers/ProjectGallery';
 
-const Index = () => (
+const handleShareProject = (event, user, showSubmitProject) => {
+  event.preventDefault();
+
+  if (user) {
+    showSubmitProject();
+  } else {
+    browserHistory.push('/signup');
+  }
+};
+
+const Index = ({ user, showSubmitProject }) => (
   <div className="Index">
-    <Jumbotron className="text-center">
-      <h2>Base</h2>
-      <p>A starting point for Meteor applications.</p>
-      <p><a className="btn btn-success" href="https://themeteorchef.com/base" role="button">Read the Documentation</a></p>
-      <p style={ { fontSize: '16px', color: '#aaa' } }>Currently at v4.10.0</p>
-    </Jumbotron>
+    <TextHeader
+      title="What are you building with Meteor?"
+      subtitle="I &hearts; Meteor is show and tell for Meteor developers."
+      callToAction={{
+        onClick(event) { handleShareProject(event, user, showSubmitProject); },
+        label: user ? 'Share a Project' : 'Signup & Share',
+      }}
+      centered
+    />
+    <ProjectGallery filter="latest" />
   </div>
 );
+
+Index.propTypes = {
+  user: React.PropTypes.object,
+  showSubmitProject: React.PropTypes.func,
+};
 
 export default Index;
