@@ -28,11 +28,11 @@ export default class App extends React.Component {
           showSubmitProject: this.showSubmitProject,
         })}
       </Grid>
-      <SubmitProject
+      { this.state.showSubmitProject ? <SubmitProject
         show={ this.state.showSubmitProject }
         onHide={ this.hideSubmitProject }
         projectId={ this.state.projectId }
-      />
+      /> : '' }
     </div>);
   }
 }

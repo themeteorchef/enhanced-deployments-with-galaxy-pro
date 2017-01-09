@@ -10,11 +10,10 @@ const handleSubmit = () => {
   const project = {
     title: component.projectTitle.value,
     url: component.projectUrl.value,
-    description: component.projectDescription.value,
     createdBy: component.projectCreatedBy.value,
   };
 
-  if (this.props.project) {
+  if (component.props.project) {
     method = updateProject;
     project._id = component.props.project._id;
   }
@@ -23,6 +22,7 @@ const handleSubmit = () => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
+      component.props.onHide();
       Bert.alert('Project submitted! Thanks for sharing.', 'success');
     }
   });

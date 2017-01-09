@@ -22,11 +22,17 @@ export default class ProjectGallery extends React.Component {
   }
 
   render() {
-    const { projects, filter } = this.props;
+    const { projects, showSubmitProject, filter } = this.props;
     return (<div className="ProjectGallery">
     { projects.length === 0 ?
       <Alert bsStyle="warning">{ this.notFoundString(filter) }</Alert> :
-      projects.map(project => <Project key={ project._id } project={ project } />) }
+      projects.map(project => (
+        <Project
+          showSubmitProject={ showSubmitProject }
+          key={ project._id }
+          project={ project }
+        />
+      ))}
     </div>);
   }
 }
@@ -36,4 +42,5 @@ ProjectGallery.propTypes = {
   filter: React.PropTypes.string,
   setPaginationLimit: React.PropTypes.object,
   paginationLimit: React.PropTypes.number,
+  showSubmitProject: React.PropTypes.func,
 };

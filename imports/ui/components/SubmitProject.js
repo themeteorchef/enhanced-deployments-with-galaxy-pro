@@ -18,6 +18,7 @@ export default class SubmitProject extends React.Component {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
+          this.props.onHide();
           Bert.alert('Poof! Project deleted.', 'success');
         }
       });
@@ -26,7 +27,6 @@ export default class SubmitProject extends React.Component {
 
   close() {
     this.props.onHide();
-    this.setState({ showModal: true });
   }
 
   componentDidMount() {
@@ -36,7 +36,7 @@ export default class SubmitProject extends React.Component {
   render() {
     const { project, show } = this.props;
     const title = project ? 'Edit Project' : 'Submit a Project';
-    return (<Modal show={ show } onHide={ this.close }>
+    return (<Modal className="SubmitProject" show={ show } onHide={ this.close }>
       <Modal.Header closeButton>
         <Modal.Title>{ title }</Modal.Title>
       </Modal.Header>
@@ -45,9 +45,6 @@ export default class SubmitProject extends React.Component {
         onSubmit={event => event.preventDefault()}
       >
         <Modal.Body>
-          { project && project.image ? <div className="ProjectPreview">
-            <img src={ project.image } alt={ project && project.title } />
-          </div> : '' }
           <Row>
             <Col xs={ 12 } sm={ 6 }>
               <FormGroup>
@@ -69,40 +66,36 @@ export default class SubmitProject extends React.Component {
                   type="text"
                   ref={projectCreatedBy => (this.projectCreatedBy = projectCreatedBy)}
                   name="createdBy"
-                  defaultValue={ project && project.projectCreatedBy }
+                  defaultValue={ project && project.createdBy }
                   className="form-control"
                   placeholder="Doug Funnie"
                 />
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup>
-            <ControlLabel>Project URL</ControlLabel>
-            <input
-              type="text"
-              ref={projectUrl => (this.projectUrl = projectUrl)}
-              name="url"
-              defaultValue={ project && project.url }
-              className="form-control"
-              placeholder="https://tacofinder.com"
-            />
-            <p className="form-hint">Must include protocol (http:// or https://).</p>
-          </FormGroup>
-          <ControlLabel>Description</ControlLabel>
-          <textarea
-            ref={projectDescription => (this.projectDescription = projectDescription)}
-            name="description"
-            defaultValue={ project && project.description }
+          <ControlLabel>Project URL</ControlLabel>
+          <input
+            type="text"
+            ref={projectUrl => (this.projectUrl = projectUrl)}
+            name="url"
+            defaultValue={ project && project.url }
             className="form-control"
-            placeholder="e.g., TacoFinder helps you find the best tacos in your neighborhood."
+            placeholder="https://tacofinder.com"
           />
+          <p className="form-hint">Must include protocol (http:// or https://).</p>
         </Modal.Body>
         <Modal.Footer>
           { project ?
-            <a href="#" onClick={ this.deleteProject }>Delete Project</a> :
+            <a
+              href="#"
+              className="delete-project"
+              onClick={ this.deleteProject }
+            >Delete Project</a> :
             '' }
           <Button onClick={ this.close }>Nevermind</Button>
-          <Button type="submit" bsStyle="success">Submit Project</Button>
+          <Button type="submit" bsStyle="success">
+            { project ? 'Update Project' : 'Submit Project' }
+          </Button>
         </Modal.Footer>
       </form>
     </Modal>);

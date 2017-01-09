@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { composeWithTracker } from 'react-komposer';
 import Projects from '../../api/projects/projects';
 import Project from '../components/Project.js';
-import { Loading } from '../components/Loading.js';
+import { BlankLoading } from '../components/Loading.js';
 
 const composer = ({ project }, onData) => {
   const isFavorited = Projects.findOne({
@@ -13,4 +13,4 @@ const composer = ({ project }, onData) => {
   onData(null, { isFavorited: !!isFavorited });
 };
 
-export default composeWithTracker(composer, Loading)(Project);
+export default composeWithTracker(composer, {})(Project);

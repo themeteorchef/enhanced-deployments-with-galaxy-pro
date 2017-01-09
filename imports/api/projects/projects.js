@@ -23,20 +23,10 @@ const ProjectsSchema = new SimpleSchema({
   url: {
     type: String,
     label: 'The url of this project.',
-    // unique: true,
   },
   title: {
     type: String,
     label: 'The title of this project.',
-  },
-  image: {
-    type: String,
-    label: 'URL of an image for this project.',
-  },
-  description: {
-    type: String,
-    label: 'The description for this project.',
-    optional: true,
   },
   createdBy: {
     type: String,

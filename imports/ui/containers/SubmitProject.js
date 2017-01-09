@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { composeWithTracker } from 'react-komposer';
 import Projects from '../../api/projects/projects';
 import SubmitProject from '../components/SubmitProject';
-import { Loading } from '../components/Loading.js';
+import { BlankLoading } from '../components/Loading.js';
 
 const composer = ({ projectId }, onData) => {
   const subscription = Meteor.subscribe('projects.edit', projectId);
@@ -13,4 +13,4 @@ const composer = ({ projectId }, onData) => {
   }
 };
 
-export default composeWithTracker(composer, Loading)(SubmitProject);
+export default composeWithTracker(composer, BlankLoading)(SubmitProject);

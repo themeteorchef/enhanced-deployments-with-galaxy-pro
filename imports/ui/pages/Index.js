@@ -24,7 +24,7 @@ const Index = ({ user, showSubmitProject }) => (
       }}
       centered
     />
-    <ProjectGallery filter="latest" />
+    <ProjectGallery showSubmitProject={ showSubmitProject } filter="latest" />
   </div>
 );
 

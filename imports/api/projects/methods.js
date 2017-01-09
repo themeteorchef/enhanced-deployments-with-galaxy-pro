@@ -7,10 +7,9 @@ import rateLimit from '../../modules/rate-limit.js';
 export const submitProject = new ValidatedMethod({
   name: 'projects.submit',
   validate: new SimpleSchema({
-    _id: { type: String, optional: true },
-    title: { type: String, optional: true },
-    url: { type: String, optional: true },
-    description: { type: String, optional: true },
+    title: { type: String },
+    url: { type: String },
+    createdBy: { type: String },
   }).validator(),
   run(project) {
     const projectToInsert = project;
@@ -25,7 +24,7 @@ export const updateProject = new ValidatedMethod({
     _id: { type: String },
     title: { type: String },
     url: { type: String },
-    description: { type: String },
+    createdBy: { type: String },
   }).validator(),
   run(project) {
     const projectUpdate = project;

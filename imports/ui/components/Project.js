@@ -10,10 +10,10 @@ const handleFavoriteProject = (_id) => {
   });
 };
 
-const Project = ({ project, isFavorited }) => (
+const Project = ({ project, isFavorited, showSubmitProject }) => (
   <div className="Project">
     <div className="Project-details">
-      <a href={ project.url } />
+      <a href={ project.url } target="_blank" />
       <header>
         <h4>{ project.title }</h4>
         <p>by { project.createdBy }</p>
@@ -30,6 +30,12 @@ const Project = ({ project, isFavorited }) => (
       >
         <i className="fa fa-heart" /> { project.favorites }
       </p>
+      { Meteor.userId() === project.owner ?
+        <a onClick={(event) => {
+          event.preventDefault();
+          showSubmitProject(project._id);
+        }} href="#">Edit</a> :
+        '' }
     </footer>
   </div>
 );
@@ -37,6 +43,7 @@ const Project = ({ project, isFavorited }) => (
 Project.propTypes = {
   project: React.PropTypes.object,
   isFavorited: React.PropTypes.bool,
+  showSubmitProject: React.PropTypes.func,
 };
 
 export default Project;

@@ -16,7 +16,7 @@
     cursor: pointer;
   }
 
-  a {
+  .Project-details > a {
     display: block;
     position: absolute;
     top: 0;
@@ -54,6 +54,12 @@
     &:hover {
       color: #444;
     }
+  }
+
+  footer a {
+    float: right;
+    color: #888;
+    text-decoration: underline;
   }
 
   .favorite:hover {
