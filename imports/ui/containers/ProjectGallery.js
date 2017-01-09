@@ -11,8 +11,8 @@ const composer = ({ filter }, onData) => {
   const query = {
     latest: {},
     popular: {},
-    favorites: { 'favoritedBy.userId': this.userId },
-    submissions: { owner: this.userId },
+    favorites: { 'favoritedBy.userId': Meteor.userId() },
+    submissions: { owner: Meteor.userId() },
   }[filter];
 
   const projection = {
