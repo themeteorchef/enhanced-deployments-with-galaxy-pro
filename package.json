@@ -1,14 +1,14 @@
 {
-  "name": "application-name",
+  "name": "ilovemeteor",
   "version": "1.0.0",
-  "description": "Application description.",
+  "description": "Show and tell for Meteor developers.",
   "scripts": {
     "start": "meteor --settings settings-development.json",
     "test": "meteor test --driver-package practicalmeteor:mocha --port 5000",
     "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests",
     "chimp-test": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
     "staging": "meteor deploy staging.meteor.com --settings settings-development.json",
-    "production": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy ilovemeteor.com --settings settings-production.json"
+    "production": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy ilovemeteor.com --owner ilovemeteor --settings settings-production.json"
   },
   "devDependencies": {
     "chimp": "^0.41.2",
@@ -71,6 +71,7 @@
     "react-addons-pure-render-mixin": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
+    "react-ga": "^2.1.2",
     "react-komposer": "^1.13.1",
     "react-router": "^3.0.0",
     "react-router-bootstrap": "^0.23.1"

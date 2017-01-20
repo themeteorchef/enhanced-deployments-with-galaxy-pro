@@ -3,6 +3,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
+import ReactGA from 'react-ga';
 import { Meteor } from 'meteor/meteor';
 import App from '../../ui/layouts/App.js';
 import Index from '../../ui/containers/Index.js';
@@ -24,9 +25,17 @@ const authenticate = (nextState, replace) => {
   }
 };
 
+ReactGA.initialize('UA-55125549-7');
+
+const logPageView = () => {
+  const page = window.location.pathname;
+  ReactGA.set({ page });
+  ReactGA.pageview(page);
+};
+
 Meteor.startup(() => {
   render(
-    <Router history={ browserHistory }>
+    <Router history={ browserHistory } onUpdate={ logPageView }>
       <Route path="/" component={ App }>
         <IndexRedirect to="latest" />
         <Route name="latest" path="/latest" component={ Index } />
