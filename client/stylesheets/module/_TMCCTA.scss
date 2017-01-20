@@ -1,0 +1,91 @@
+.TMCCTA {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  border-top: 5px solid $red;
+  padding: 15px;
+  transition: transform .7s ease-in-out;
+  z-index: 9999;
+
+  &.has-visited {
+    transform: translateY(500px);
+  }
+
+  .fa-remove {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: $black-4;
+    font-size: 16px;
+
+    &:hover {
+      cursor: pointer;
+      color: $red;
+    }
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    padding-right: 15px;
+    margin: 0;
+  }
+
+  .subtitle {
+    margin: 15px 0 20px;
+  }
+
+  .subtitle,
+  .subtitle a {
+    color: $black-3;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .subtitle a {
+    text-decoration: underline;
+  }
+
+  .presented-by {
+    margin-top: 20px;
+
+    span {
+      display: inline-block;
+      float: left;
+      font-size: 14px;
+      color: $black-4;
+    }
+
+    img {
+      display: inline-block;
+      float: left;
+      width: 115px;
+      margin: 1px 0 0 7px;
+    }
+  }
+
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .presented-by a {
+      display: inline-block;
+      width: 125px;
+      height: 14px;
+    }
+
+    img[src$=".svg"] {
+      width: 100%;
+    }
+  }
+}
+
+@include breakpoint(480px) {
+  .TMCCTA {
+    left: auto;
+    right: 15px;
+    max-width: 325px;
+  }
+}

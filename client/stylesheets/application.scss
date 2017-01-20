@@ -5,6 +5,8 @@
 @import "base/body";
 @import "base/forms";
 
+@import "theme/colors";
+
 @import "module/Loading";
 @import "module/Login";
 @import "module/PageHeader";
@@ -14,5 +16,6 @@
 @import "module/ProjectGallery";
 @import "module/Project";
 @import "module/SubmitProject";
+@import "module/TMCCTA";
 
 @import "state/Navbar";
