@@ -25,13 +25,17 @@ const authenticate = (nextState, replace) => {
   }
 };
 
-ReactGA.initialize('UA-55125549-7');
+let logPageView = () => {};
 
-const logPageView = () => {
-  const page = window.location.pathname;
-  ReactGA.set({ page });
-  ReactGA.pageview(page);
-};
+if (Meteor.isProduction) {
+  ReactGA.initialize('UA-55125549-7');
+
+  logPageView = () => {
+    const page = window.location.pathname;
+    ReactGA.set({ page });
+    ReactGA.pageview(page);
+  };
+}
 
 Meteor.startup(() => {
   render(
