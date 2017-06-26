@@ -1,9 +1,11 @@
-##### Tutorial: Deploying with Meteor Galaxy
+#### Tutorial: Enhanced Deployments with Galaxy Pro
 
-In this tutorial, we'll help a new Meteor-focused startup I &hearts; Meteor to deploy their application with the [Galaxy Hosting Service](https://meteor.com/hosting). We'll learn how to configure our app for deployment, set up our domain's DNS via DNSimple, and how to configure SSL using Let's Encrypt. We'll also take a look at scaling our app and how to automate SEO via Prerender.io.
+In this tutorial, we'll help the Meteor-focused startup I &hearts; Meteor to enhance their deployment on Meteor's [Galaxy Hosting Service](https://meteor.com/hosting) by upgrading to [Galaxy Pro](https://meteor.com/hosting). We'll learn how to upgrade our app via the Galaxy dashboard, configure and use Galaxy Pro's APM feature to monitor IHM's performance, and make use of IP whitelisting to allow our Galaxy service to connect to a third-party database provider.
 
-[Learn How to Deploy with Galaxy](https://themeteorchef.com/tutorials/deploying-with-meteor-galaxy)  
+[Read this tutorial on The Meteor Chef](https://themeteorchef.com/tutorials/enhanced-deployments-with-galaxy-pro)  
 
-[Download the Source](https://github.com/themeteorchef/deploying-with-meteor-galaxy/archive/master.zip)
+[Download the source (.zip)](https://github.com/themeteorchef/enhanced-deployments-with-galaxy-pro/archive/master.zip)
 
-The code for this tutorial is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+---
+
+_The code for this tutorial is licensed under the [MIT License](http://opensource.org/licenses/MIT)_.
