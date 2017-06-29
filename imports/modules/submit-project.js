@@ -22,7 +22,7 @@ const handleImageUpload = (target, callback) => {
   const reader = new FileReader();
   const file = target.files[0];
   reader.readAsDataURL(file);
-  reader.onload = () => { callback({ data: reader.result, name: file.name, type: file.type }); };
+  reader.onload = () => { callback({ data: reader.result, name: file.name, type: file.type, size: file.size }); };
 };
 
 const handleSubmit = () => {

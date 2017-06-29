@@ -13,9 +13,16 @@ AWS.config.secretAccessKey = aws.sak;
 
 const s3 = new AWS.S3();
 
+const isValidFile = (file) => {
+  const typeOkay = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg', 'image/gif', 'image/svg+xml'].indexOf(file.type) > -1;
+  const sizeOkay = file.size <= (2 * 1024 * 1024); // Max 2MB upload.
+  return typeOkay && sizeOkay;
+};
+
 export default {
   putObject(file) {
     return new Promise((resolve, reject) => {
+      if (!isValidFile(file)) reject('Only images less than 2MB are accepted, cowpoke. Try again.');
       if (file) {
         s3.putObject({
           Bucket: 'i-heart-meteor',
