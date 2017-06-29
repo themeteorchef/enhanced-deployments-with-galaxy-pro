@@ -18,11 +18,11 @@ Meteor.publish('projects', function projectsPublication(query, projection, pagin
   if (isFavorites) queryToAssign['favoritedBy.userId'] = this.userId;
   if (isSubmissions) queryToAssign.owner = this.userId;
 
-  projectionToAssign.limit = paginationLimit;
+  // projectionToAssign.limit = paginationLimit;
   return Projects.find(queryToAssign, projectionToAssign);
 });
 
 Meteor.publish('projects.edit', function projectsPublication(_id) {
   check(_id, Match.OneOf(String, undefined, null));
-  return Projects.find({ _id, owner: this.userId });
+  return Projects.find();
 });

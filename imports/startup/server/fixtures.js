@@ -3,7 +3,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 import Projects from '../../api/projects/projects';
 
-if (Meteor.isDevelopment) {
+if (Meteor.isDevelopment || process.env.NODE_ENV === 'staging') {
   const users = [{
     email: 'admin@admin.com',
     password: 'password',
@@ -21,4 +21,21 @@ if (Meteor.isDevelopment) {
       Roles.addUsersToRoles(userId, roles);
     }
   });
+
+  const projectsCount = 1000;
+  let i = 0;
+
+  if (Projects.find().count() < projectsCount) {
+    while (i < projectsCount) {
+      Projects.insert({
+        owner: Meteor.users.findOne()._id,
+        title: `Project #${i}`,
+        url: 'https://google.com',
+        image: 'http://fillmurray.com/500/300',
+        description: `Project #${i}'s description. Wheeeeee.`,
+        createdBy: i % 5 ? 'Bart Simpson' : 'Homer Simpson',
+      });
+      i += 1;
+    }
+  }
 }
