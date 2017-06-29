@@ -1,12 +1,34 @@
+import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
 import { Bert } from 'meteor/themeteorchef:bert';
 import './validation.js';
-import { submitProject, updateProject } from '../api/projects/methods';
 
 let component;
 
+const submitProject = (method, project, image) => {
+  if (image) project.image = image; // eslint-disable-line
+  Meteor.call(method, project, (error) => {
+    if (error) {
+      Bert.alert(error.reason, 'danger');
+    } else {
+      component.props.onHide();
+      const submitOrUpdate = project._id ? 'updated' : 'submitted';
+      Bert.alert(`Project ${submitOrUpdate}! Thanks for sharing.`, 'success');
+    }
+  });
+};
+
+const handleImageUpload = (target, callback) => {
+  const reader = new FileReader();
+  const file = target.files[0];
+  reader.readAsDataURL(file);
+  reader.onload = () => { callback({ data: reader.result, name: file.name, type: file.type }); };
+};
+
 const handleSubmit = () => {
-  let method = submitProject;
+  let method = 'projects.submit';
+  const imageInput = component.projectImage;
+
   const project = {
     title: component.projectTitle.value,
     url: component.projectUrl.value,
@@ -14,18 +36,15 @@ const handleSubmit = () => {
   };
 
   if (component.props.project) {
-    method = updateProject;
+    method = 'projects.update';
     project._id = component.props.project._id;
   }
 
-  method.call(project, (error) => {
-    if (error) {
-      Bert.alert(error.reason, 'danger');
-    } else {
-      component.props.onHide();
-      Bert.alert('Project submitted! Thanks for sharing.', 'success');
-    }
-  });
+  if (imageInput.files.length) {
+    handleImageUpload(imageInput, image => submitProject(method, project, image));
+  } else {
+    submitProject(method, project);
+  }
 };
 
 const validate = () => {

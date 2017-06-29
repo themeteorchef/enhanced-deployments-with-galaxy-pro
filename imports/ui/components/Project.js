@@ -2,10 +2,9 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { favoriteProject } from '../../api/projects/methods.js';
 
 const handleFavoriteProject = (_id) => {
-  favoriteProject.call({ _id }, (error) => {
+  Meteor.call('projects.favorite', { _id }, (error) => {
     if (error) Bert.alert(error.reason, 'danger');
   });
 };
@@ -14,6 +13,9 @@ const Project = ({ project, isFavorited, showSubmitProject }) => (
   <div className="Project">
     <div className="Project-details">
       <a href={ project.url } target="_blank" />
+      <div className="Project-image">
+        <img src={ project.image || 'https://s3.amazonaws.com/i-heart-meteor/ihm-placeholder.png'} alt={project.title} />
+      </div>
       <header>
         <h4>{ project.title }</h4>
         <p>by { project.createdBy }</p>

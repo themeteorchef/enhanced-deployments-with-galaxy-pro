@@ -1,20 +1,32 @@
 import React from 'react';
 import { Row, Col, Modal, Button, FormGroup, ControlLabel } from 'react-bootstrap';
+import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { deleteProject } from '../../api/projects/methods';
 import handleSubmitProject from '../../modules/submit-project.js';
 
 export default class SubmitProject extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { image: null };
     this.close = this.close.bind(this);
+    this.deleteProjectImage = this.deleteProjectImage.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
+  }
+
+  deleteProjectImage(event) {
+    if (confirm('Are you sure? This is permanent!')) {
+      Meteor.call('projects.deleteImage', { _id: this.props.project._id }, (error) => {
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        }
+      });
+    }
   }
 
   deleteProject(event) {
     if (confirm('Are you sure? This is permanent!')) {
-      deleteProject.call({ _id: this.props.project._id }, (error) => {
+      Meteor.call('projects.delete', { _id: this.props.project._id }, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
@@ -45,6 +57,27 @@ export default class SubmitProject extends React.Component {
         onSubmit={event => event.preventDefault()}
       >
         <Modal.Body>
+          <Row>
+            <Col xs={ 12 }>
+              {project && project.image ?
+                <div className="EditProjectImage">
+                  <div className="EditProjectImage-delete" onClick={this.deleteProjectImage}>
+                    <i className="fa fa-remove" />
+                  </div>
+                  <img src={(project && project.image)} alt="Project Image" />
+                </div> :
+                <FormGroup>
+                  <ControlLabel>Image (optional)</ControlLabel>
+                  <input
+                    type="file"
+                    ref={projectImage => (this.projectImage = projectImage)}
+                    name="projetImage"
+                    className="form-control"
+                  />
+                  <p className="form-hint">Recommended dimensions 770 (w) x 412 (h).</p>
+                </FormGroup>}
+            </Col>
+          </Row>
           <Row>
             <Col xs={ 12 } sm={ 6 }>
               <FormGroup>

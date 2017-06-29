@@ -26,10 +26,18 @@
     z-index: 1;
   }
 
+  .Project-image {
+    position: relative;
+    margin: -20px -20px 20px;
+    max-height: 195px;
+    overflow: hidden;
+  }
+
   img {
     display: block;
     width: 100%;
     max-width: 100%;
+    border-radius: 3px 3px 0 0;
   }
 
   h4 {
@@ -68,5 +76,23 @@
 
   .favorite.is-favorited {
     color: #de4f4f;
+  }
+}
+
+@include breakpoint(tablet) {
+  .Project .Project-image {
+    max-height: 183px;
+  }
+}
+
+@include breakpoint(desktop) {
+  .Project .Project-image {
+    max-height: 160px;
+  }
+}
+
+@include breakpoint(desktop-large) {
+  .Project .Project-image {
+    max-height: 145px;
   }
 }

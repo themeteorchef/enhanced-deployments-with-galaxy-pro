@@ -28,6 +28,11 @@ const ProjectsSchema = new SimpleSchema({
     type: String,
     label: 'The title of this project.',
   },
+  image: {
+    type: String,
+    label: 'The image for this project.',
+    optional: true,
+  },
   createdBy: {
     type: String,
     label: 'The name of the creator of this project.',

@@ -1,3 +1,28 @@
+.SubmitProject .EditProjectImage {
+  position: relative;
+  margin-bottom: 20px;
+
+  .EditProjectImage-delete {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 3px 0 0 3px;
+
+    i {
+      color: red;
+      font-size: 18px;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
 .SubmitProject .delete-project {
   float: left;
   color: #de4f4f;

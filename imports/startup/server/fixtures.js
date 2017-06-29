@@ -22,20 +22,20 @@ if (Meteor.isDevelopment) {
     }
   });
 
-  const projectsCount = 100;
-  let i = 0;
-
-  if (Projects.find().count() < projectsCount) {
-    while (i < projectsCount) {
-      Projects.insert({
-        owner: Meteor.users.findOne()._id,
-        title: `Project #${i}`,
-        url: 'https://google.com',
-        image: 'http://fillmurray.com/500/300',
-        description: `Project #${i}'s description. Wheeeeee.`,
-        createdBy: i % 5 ? 'Bart Simpson' : 'Homer Simpson',
-      });
-      i += 1;
-    }
-  }
+  // const projectsCount = 100;
+  // let i = 0;
+  //
+  // if (Projects.find().count() < projectsCount) {
+  //   while (i < projectsCount) {
+  //     Projects.insert({
+  //       owner: Meteor.users.findOne()._id,
+  //       title: `Project #${i}`,
+  //       url: 'https://google.com',
+  //       image: 'http://fillmurray.com/500/300',
+  //       description: `Project #${i}'s description. Wheeeeee.`,
+  //       createdBy: i % 5 ? 'Bart Simpson' : 'Homer Simpson',
+  //     });
+  //     i += 1;
+  //   }
+  // }
 }
