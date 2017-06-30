@@ -1,4 +1,4 @@
-import browserHistory from 'react-router';
+import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -12,7 +12,7 @@ const submitProject = (method, project, image) => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
-      browserHistory.push((project._id ? `/projects/${project._id}` : '/'));
+      browserHistory.push('/');
       const submitOrUpdate = project._id ? 'updated' : 'submitted';
       Bert.alert(`Project ${submitOrUpdate}! Thanks for sharing.`, 'success');
     }
@@ -41,7 +41,7 @@ const handleSubmit = () => {
     project._id = component.props.project._id;
   }
 
-  if (imageInput.files.length) {
+  if (imageInput && imageInput.files.length) {
     handleImageUpload(imageInput, image => submitProject(method, project, image));
   } else {
     submitProject(method, project);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Modal, Button, FormGroup, ControlLabel } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -29,6 +30,7 @@ class SubmitProject extends React.Component {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
+          browserHistory.push('/');
           Bert.alert('Poof! Project deleted.', 'success');
         }
       });

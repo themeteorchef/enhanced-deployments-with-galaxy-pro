@@ -7,7 +7,7 @@ import Projects from '../projects';
 import rateLimit from '../../../modules/rate-limit.js';
 import s3 from '../../../modules/server/s3';
 
-const getFileName = image => image.replace('https://s3.amazonaws.com/i-heart-meteor/', '');
+const getFileName = image => (image ? image.replace('https://s3.amazonaws.com/i-heart-meteor/', '') : null);
 
 export const submitProject = new ValidatedMethod({
   name: 'projects.submit',
@@ -15,22 +15,25 @@ export const submitProject = new ValidatedMethod({
     title: { type: String },
     url: { type: String },
     createdBy: { type: String },
-    image: { type: Object, blackbox: true },
+    image: { type: Object, blackbox: true, optional: true },
   }).validator(),
   run(project) {
     const projectToInsert = project;
     projectToInsert.owner = this.userId;
+    const imageToInsert = projectToInsert.image;
+    delete projectToInsert.image;
 
-    return s3.putObject(projectToInsert.image)
+    const projectId = Projects.insert(projectToInsert);
+
+    s3.putObject(imageToInsert)
     .then((image) => {
-      if (image) {
-        projectToInsert.image = image;
-        Projects.insert(projectToInsert);
-      }
+      if (image) Projects.update(projectId, { $set: { image } });
     })
     .catch((error) => {
       throw new Meteor.Error('500', `${error}`);
     });
+
+    return projectId;
   },
 });
 
@@ -47,18 +50,21 @@ export const updateProject = new ValidatedMethod({
     const projectUpdate = project;
     const existingProject = Projects.findOne(project._id, { fields: { owner: 1 } });
     const imageToUpdate = existingProject.image ? null : projectUpdate.image;
+    delete projectUpdate.image;
 
     if (this.userId && existingProject.owner === this.userId) {
       const projectId = project._id;
       delete projectUpdate._id;
-      return s3.putObject(imageToUpdate)
+
+      s3.putObject(imageToUpdate)
       .then((image) => {
-        if (image) projectUpdate.image = image;
-        return Projects.update(projectId, { $set: projectUpdate });
+        if (image) Projects.update(projectId, { $set: { image } });
       })
       .catch((error) => {
         throw new Meteor.Error('500', `${error}`);
       });
+
+      return Projects.update(projectId, { $set: projectUpdate });
     }
     throw new Meteor.Error('500', 'Sorry, you\'re not allowed to do that!');
   },

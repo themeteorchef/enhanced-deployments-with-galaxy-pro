@@ -22,7 +22,7 @@ const isValidFile = (file) => {
 export default {
   putObject(file) {
     return new Promise((resolve, reject) => {
-      if (!isValidFile(file)) reject('Only images less than 2MB are accepted, cowpoke. Try again.');
+      if (file && !isValidFile(file)) reject('Only images less than 2MB are accepted, cowpoke. Try again.');
       if (file) {
         s3.putObject({
           Bucket: 'i-heart-meteor',
@@ -45,16 +45,20 @@ export default {
   },
   deleteObject(Key) {
     return new Promise((resolve, reject) => {
-      s3.deleteObject({
-        Bucket: 'i-heart-meteor',
-        Key,
-      }, Meteor.bindEnvironment((error) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve();
-        }
-      }));
+      if (Key) {
+        s3.deleteObject({
+          Bucket: 'i-heart-meteor',
+          Key,
+        }, Meteor.bindEnvironment((error) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        }));
+      } else {
+        resolve();
+      }
     });
   },
 }
