@@ -1,3 +1,4 @@
+import browserHistory from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -11,7 +12,7 @@ const submitProject = (method, project, image) => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
-      component.props.onHide();
+      browserHistory.push((project._id ? `/projects/${project._id}` : '/'));
       const submitOrUpdate = project._id ? 'updated' : 'submitted';
       Bert.alert(`Project ${submitOrUpdate}! Thanks for sharing.`, 'success');
     }

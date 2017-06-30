@@ -35,7 +35,7 @@ const Project = ({ project, isFavorited, showSubmitProject }) => (
       { Meteor.userId() === project.owner ?
         <a onClick={(event) => {
           event.preventDefault();
-          showSubmitProject(project._id);
+          browserHistory.push(`/projects/${project._id}`);
         }} href="#">Edit</a> :
         '' }
     </footer>

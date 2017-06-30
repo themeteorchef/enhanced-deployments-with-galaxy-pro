@@ -10,6 +10,7 @@ import Index from '../../ui/containers/Index.js';
 import Popular from '../../ui/pages/Popular.js';
 import Favorites from '../../ui/pages/Favorites.js';
 import Submissions from '../../ui/pages/Submissions.js';
+import SubmitProject from '../../ui/containers/SubmitProject.js';
 import Login from '../../ui/pages/Login.js';
 import NotFound from '../../ui/pages/NotFound.js';
 import RecoverPassword from '../../ui/pages/RecoverPassword.js';
@@ -46,6 +47,8 @@ Meteor.startup(() => {
         <Route name="popular" path="/popular" component={ Popular } />
         <Route name="favorites" path="/favorites" component={ Favorites } onEnter={ authenticate } />
         <Route name="submissions" path="/submissions" component={ Submissions } onEnter={ authenticate } />
+        <Route name="submit" path="/projects/submit" component={ SubmitProject } onEnter={ authenticate } />
+        <Route name="submit" path="/projects/:projectId" component={ SubmitProject } onEnter={ authenticate } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
