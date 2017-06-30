@@ -20,10 +20,13 @@ export const submitProject = new ValidatedMethod({
   run(project) {
     const projectToInsert = project;
     projectToInsert.owner = this.userId;
-    return s3.putObject(project.image)
+
+    return s3.putObject(projectToInsert.image)
     .then((image) => {
-      if (image) projectToInsert.image = image;
-      return Projects.insert(projectToInsert);
+      if (image) {
+        projectToInsert.image = image;
+        Projects.insert(projectToInsert);
+      }
     })
     .catch((error) => {
       throw new Meteor.Error('500', `${error}`);

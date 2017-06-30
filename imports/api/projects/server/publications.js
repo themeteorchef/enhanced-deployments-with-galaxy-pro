@@ -18,7 +18,7 @@ Meteor.publish('projects', function projectsPublication(query, projection, pagin
   if (isFavorites) queryToAssign['favoritedBy.userId'] = this.userId;
   if (isSubmissions) queryToAssign.owner = this.userId;
 
-  // projectionToAssign.limit = paginationLimit;
+  projectionToAssign.limit = paginationLimit;
   return Projects.find(queryToAssign, projectionToAssign);
 });
 

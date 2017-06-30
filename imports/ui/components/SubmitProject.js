@@ -67,13 +67,13 @@ export default class SubmitProject extends React.Component {
                   <img src={(project && project.image)} alt="Project Image" />
                 </div> :
                 <FormGroup>
-                  <ControlLabel>Image (optional)</ControlLabel>
+                  {/* <ControlLabel>Image (optional)</ControlLabel>
                   <input
                     type="file"
                     ref={projectImage => (this.projectImage = projectImage)}
                     name="projetImage"
                     className="form-control"
-                  />
+                  /> */}
                   <p className="form-hint">Recommended dimensions 770 (w) x 412 (h).</p>
                 </FormGroup>}
             </Col>
