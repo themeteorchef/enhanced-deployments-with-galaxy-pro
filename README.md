@@ -1,6 +1,6 @@
 #### Tutorial: Enhanced Deployments with Galaxy Pro
 
-In this tutorial, we'll learn about Meteor's new Galaxy Pro service. We'll take a look at setting up our application for monitoring with Meteor APM, learning about IP whitelisting,
+In this tutorial, we'll learn about Meteor's new Galaxy Pro service. We'll take a look at setting up our application for monitoring with Meteor APM, learning about IP whitelisting, and
 
 [Read this tutorial on The Meteor Chef](https://themeteorchef.com/tutorials/enhanced-deployments-with-galaxy-pro)  
 
