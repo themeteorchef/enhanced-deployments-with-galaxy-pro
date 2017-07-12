@@ -1,4 +1,4 @@
-#### Tutorial: Improving App Performance with Meteor APM and Gala
+#### Tutorial: Improving App Performance with Meteor APM and Galaxy Pro
 
 In this tutorial, we'll learn about Meteor's new Galaxy Pro service. We'll take a look at setting up our application for Galaxy Pro, monitoring performance (and influencing engineering decisions) with Meteor APM, learning about IP whitelisting to connect to a third-party database securely.
 
